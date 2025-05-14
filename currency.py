@@ -39,9 +39,23 @@ def get_currency_chart(curr_code):
     today = datetime.today().date()
     ten_days_ago = today - timedelta(days=10)
 
-    api_period_url = f"https://api.nbp.pl/api/exchangerates/rates/A/{curr_code}/{ten_days_ago}/{today}/?format=json"
-    api_period_response_data = requests.get(api_period_url).json()
-    exchange_period_data = api_period_response_data['rates']
+    api_url = f"https://api.nbp.pl/api/exchangerates/rates/A/{curr_code}/{ten_days_ago}/{today}/?format=json"
+    try:
+        response = requests.get(api_url)
+        response.raise_for_status()
+        response_data = response.json()
+
+        if ('rates' in response_data and response_data['rates']):
+            exchange_period_data = response_data['rates']
+        else:
+            print("No API data.")
+            return None
+    except requests.exceptions.HTTPError as http_error:
+        print(f"HTTP Error: {http_error}")
+        return None
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
 
     #Currency chart
     #x values are dates, y values are currency values
@@ -51,6 +65,8 @@ def get_currency_chart(curr_code):
     plt.style.available
     plt.style.use('fivethirtyeight')
 
+    if not exchange_period_data:
+        return None
     for day in exchange_period_data:
         date = day['effectiveDate']
         date_obj = datetime.strptime(date, "%Y-%m-%d")  
@@ -71,5 +87,6 @@ def get_currency_chart(curr_code):
     pixmap = QPixmap()
     pixmap.loadFromData(buf.read())
     return pixmap
+
     
 
