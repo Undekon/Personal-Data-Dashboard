@@ -17,7 +17,7 @@ def main():
     ui.setupUi(MainWindow)
 
     # ----------- EXCHANGE SECTION -----------
-    def on_show_exhange_click():
+    def on_show_exchange_click():
         curr_input = ui.exchange_select_curr.currentText()
         todays_data = currency.get_api_data(curr_input)
 
@@ -35,7 +35,7 @@ def main():
 
         ui.exchange_curr_chart_exch.update()
 
-    ui.exchange_show_exchange.clicked.connect(lambda: on_show_exhange_click())
+    ui.exchange_show_exchange.clicked.connect(lambda: on_show_exchange_click())
 
 
     # ----------- WEATHER SECTION -----------

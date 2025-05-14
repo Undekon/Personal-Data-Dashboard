@@ -14,7 +14,7 @@ from PyQt5.QtGui import QPixmap
 def get_api_data(curr_code):
     api_url = f"https://api.nbp.pl/api/exchangerates/rates/A/{curr_code}/today/?format=json"    
     try:
-        response = requests.get(api_url)
+        response = requests.get(api_url, timeout=5)
         response.raise_for_status()
         response_data = response.json()
 
@@ -23,8 +23,6 @@ def get_api_data(curr_code):
             return exchange_data
         else:
             return None
-        # api_response_data = requests.get(api_url).json()
-        # exchange_data = api_response_data['rates'][0]['mid']
     except requests.exceptions.HTTPError as http_error:
         print(f"HTTP Error: {http_error}")
     except Exception as e:
@@ -32,8 +30,7 @@ def get_api_data(curr_code):
 
 
 def get_currency_chart(curr_code):
-    #Dopisać obsługę błędów z API, poprawić wyświetlanie, poprawić wygląd wykresu
-    #Dodać kolejne waluty (10 najpopularniejszych)
+    #poprawić wyświetlanie, poprawić wygląd wykresu
 
     #get data from 10 days back
     today = datetime.today().date()
@@ -41,7 +38,7 @@ def get_currency_chart(curr_code):
 
     api_url = f"https://api.nbp.pl/api/exchangerates/rates/A/{curr_code}/{ten_days_ago}/{today}/?format=json"
     try:
-        response = requests.get(api_url)
+        response = requests.get(api_url, timeout=5)
         response.raise_for_status()
         response_data = response.json()
 
@@ -77,7 +74,7 @@ def get_currency_chart(curr_code):
         y_values.append(exchange_day / 100)
     
     plt.figure(figsize=(10,5), dpi=100)
-    plt.plot(x_values, y_values, label="Kurs EURO", marker='.')
+    plt.plot(x_values, y_values, label=f"Kurs {curr_code}", marker='.')
     
     buf = BytesIO()
     plt.savefig(buf, format='png')
