@@ -5,10 +5,13 @@
 # ====================================================
 
 import sys
+import os
 from gui import Ui_MainWindow
 from PyQt5 import QtWidgets
 
 import currency
+import weather
+import news
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
@@ -39,6 +42,24 @@ def main():
 
 
     # ----------- WEATHER SECTION -----------
+    def on_show_weather_click():
+        city_name = ui.weather_search_bar.text()
+        weather_data = weather.get_weather(city_name)
+
+        if weather_data:
+            #Today
+            ui.weather_today.setText(weather_data['today']['weather_desc'])
+            ui.weather_today_temp.setText(weather_data['today']['temperature'])
+            ui.weather_today_humidity.setText(weather_data['today']['humidity'])
+            ui.weather_today_pressure.setText(weather_data['today']['humidity'])
+            ui.weather_today_visibility.setText(weather_data['today']['visibility'])
+            ui.weather_today_wind.setText(weather_data['today']['wind'])
+
+            #Tomorrow
+        else:
+            ui.weather_today.setText("Failed to load data.")
+
+    ui.weather_search_btn.clicked.connect(lambda: on_show_weather_click())
 
     # ----------- NEWS SECTION -----------
     
