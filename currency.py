@@ -1,15 +1,21 @@
 import requests
+import os
+import json
 from matplotlib import pyplot as plt
 from datetime import datetime, timedelta
 from io import BytesIO
 from PyQt5.QtGui import QPixmap
 
+#do dodania:
+#   - więcej walut
+#   - przy uruchomieniu programu domyślnie ma być wykres euro
 
 #get currency data from start date to end date
 #https://api.nbp.pl/api/exchangerates/rates/{table}/{code}/{startDate}/{endDate}/
 #get data from today
 #https://api.nbp.pl/api/exchangerates/rates/{tabe}/{code}/today/
-
+CACHE_FILE = "resources/cache/rates.json"
+CURRENCIES = ["EUR", "USD", "AUD", "GBP","JPY"]
 
 def get_api_data(curr_code):
     api_url = f"https://api.nbp.pl/api/exchangerates/rates/A/{curr_code}/today/?format=json"    
@@ -27,7 +33,6 @@ def get_api_data(curr_code):
         print(f"HTTP Error: {http_error}")
     except Exception as e:
         print(f"Error: {e}")
-
 
 def get_currency_chart(curr_code):
     #poprawić wyświetlanie, poprawić wygląd wykresu
@@ -85,5 +90,51 @@ def get_currency_chart(curr_code):
     pixmap.loadFromData(buf.read())
     return pixmap
 
+def save_offline_data():
+    today = datetime.now().strftime("%Y-%m-%d")
+    data = {}
     
+    for code in CURRENCIES:
+        rate = get_api_data(code)
+        if rate is not None:
+            data[code] = {
+                "date" : today,
+                "rate" : rate
+            }
+    if data:
+        with open(CACHE_FILE, "w") as file:
+            json.dump(data, file)
+
+def load_offline_data():
+    if os.path.exists(CACHE_FILE):
+        with open(CACHE_FILE, "r") as file:
+            try:
+                return json.load(file)
+            except json.JSONDecodeError:
+                return {}
+    return {}
+
+def get_cached_live_data(curr_code):
+    today = datetime.now().strftime("%Y-%m-%d")
+    data = load_offline_data()
+
+    if (curr_code in data and data[curr_code]["date"] == today):
+        return data[curr_code]['rate']
+    
+    rate = get_api_data(curr_code)
+    if rate:
+        data[curr_code] = {
+            'date' : today,
+            'rate' : rate
+        }
+        return data[curr_code]['rate']
+    
+    with open(CACHE_FILE, 'w') as file:
+        json.dump(data, file)
+        return rate
+
+    if curr_code in data:
+        return data[curr_code]["rate"]
+    
+    return None
 

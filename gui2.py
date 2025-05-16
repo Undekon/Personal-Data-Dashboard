@@ -173,43 +173,14 @@ class Ui_MainWindow(object):
         self.weatherToday_2.addLayout(self.todayWeatherInfo)
         self.weather.addLayout(self.weatherToday_2)
         self.verticalLayout.addLayout(self.weather)
-        self.newsFrame = QtWidgets.QListView(self.centralwidget)
-        self.newsFrame.setGeometry(QtCore.QRect(540, 10, 511, 771))
-        self.newsFrame.setStyleSheet("border: 2px solid #0A0F26;\n"
+        self.exchangeFrame = QtWidgets.QListView(self.centralwidget)
+        self.exchangeFrame.setGeometry(QtCore.QRect(10, 360, 521, 421))
+        self.exchangeFrame.setStyleSheet("border: 2px solid #0A0F26;\n"
 "border-radius: 15px;\n"
 "background-color: #0A0F26;")
-        self.newsFrame.setObjectName("newsFrame")
-        self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(10, 360, 520, 420))
-        self.frame.setStyleSheet("border: 2px solid #0A0F26;\n"
-"border-radius: 15px;\n"
-"background-color: #0A0F26;")
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName("frame")
-        self.exchangeToday = QtWidgets.QLabel(self.frame)
-        self.exchangeToday.setGeometry(QtCore.QRect(10, 60, 311, 16))
-        font = QtGui.QFont()
-        font.setFamily("Arial Black")
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.exchangeToday.setFont(font)
-        self.exchangeToday.setStyleSheet("color: white;\n"
-"background-color: #0A0F26;\n"
-"")
-        self.exchangeToday.setObjectName("exchangeToday")
-        self.exchangeCurrChartExch = QtWidgets.QLabel(self.frame)
-        self.exchangeCurrChartExch.setGeometry(QtCore.QRect(10, 90, 491, 311))
-        self.exchangeCurrChartExch.setStyleSheet("background-color:#181C3B;\n"
-"color: white;\n"
-"border: 2px solid #181C3B;\n"
-"border-radius: 15px;")
-        self.exchangeCurrChartExch.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.exchangeCurrChartExch.setAlignment(QtCore.Qt.AlignCenter)
-        self.exchangeCurrChartExch.setObjectName("exchangeCurrChartExch")
-        self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.frame)
-        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(10, 10, 313, 41))
+        self.exchangeFrame.setObjectName("exchangeFrame")
+        self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.centralwidget)
+        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(30, 380, 313, 80))
         self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -221,17 +192,8 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(10)
         self.exchangeSelectCurr.setFont(font)
-        self.exchangeSelectCurr.setStyleSheet("QComboBox {\n"
-"    color: white;                /* Kolor tekstu wyświetlanego w polu */\n"
-"    background-color: #181C3B;\n"
-"}\n"
-"\n"
-"QComboBox QListView {\n"
-"    background-color: #181C3B;   /* Tło rozwijanej listy */\n"
-"    color: white;              /* Kolor tekstu dla wszystkich elementów */\n"
-"    selection-background-color: #cce5ff;\n"
-"    selection-color: black;     /* Kolor zaznaczonego elementu */\n"
-"}\n"
+        self.exchangeSelectCurr.setStyleSheet("background-color:#181C3B;\n"
+"color: white;\n"
 "")
         self.exchangeSelectCurr.setObjectName("exchangeSelectCurr")
         self.exchangeSelectCurr.addItem("")
@@ -257,6 +219,32 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.exchangeShowBtn)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem1)
+        self.exchangeToday = QtWidgets.QLabel(self.centralwidget)
+        self.exchangeToday.setGeometry(QtCore.QRect(30, 440, 311, 61))
+        font = QtGui.QFont()
+        font.setFamily("Arial Black")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.exchangeToday.setFont(font)
+        self.exchangeToday.setStyleSheet("color: white;\n"
+"")
+        self.exchangeToday.setObjectName("exchangeToday")
+        self.exchangeCurrChartExch = QtWidgets.QLabel(self.centralwidget)
+        self.exchangeCurrChartExch.setGeometry(QtCore.QRect(30, 520, 481, 241))
+        self.exchangeCurrChartExch.setStyleSheet("background-color:#181C3B;\n"
+"color: white;\n"
+"border: 2px solid #181C3B;\n"
+"border-radius: 15px;")
+        self.exchangeCurrChartExch.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.exchangeCurrChartExch.setAlignment(QtCore.Qt.AlignCenter)
+        self.exchangeCurrChartExch.setObjectName("exchangeCurrChartExch")
+        self.newsFrame = QtWidgets.QListView(self.centralwidget)
+        self.newsFrame.setGeometry(QtCore.QRect(540, 10, 511, 771))
+        self.newsFrame.setStyleSheet("border: 2px solid #0A0F26;\n"
+"border-radius: 15px;\n"
+"background-color: #0A0F26;")
+        self.newsFrame.setObjectName("newsFrame")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1061, 21))
@@ -280,14 +268,14 @@ class Ui_MainWindow(object):
         self.weatherTodayWind.setText(_translate("MainWindow", "Wind"))
         self.weatherTodayHumidity.setText(_translate("MainWindow", "Humidity"))
         self.weatherTodayPressure.setText(_translate("MainWindow", "Pressure"))
-        self.exchangeToday.setText(_translate("MainWindow", "Today rate:"))
-        self.exchangeCurrChartExch.setText(_translate("MainWindow", "Rate chart"))
         self.exchangeSelectCurr.setItemText(0, _translate("MainWindow", "EUR"))
         self.exchangeSelectCurr.setItemText(1, _translate("MainWindow", "USD"))
         self.exchangeSelectCurr.setItemText(2, _translate("MainWindow", "GBP"))
         self.exchangeSelectCurr.setItemText(3, _translate("MainWindow", "AUD"))
         self.exchangeSelectCurr.setItemText(4, _translate("MainWindow", "JPY"))
         self.exchangeShowBtn.setText(_translate("MainWindow", "Show"))
+        self.exchangeToday.setText(_translate("MainWindow", "Today rate:"))
+        self.exchangeCurrChartExch.setText(_translate("MainWindow", "Rate chart"))
 
 
 if __name__ == "__main__":

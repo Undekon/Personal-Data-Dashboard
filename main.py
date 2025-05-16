@@ -1,11 +1,10 @@
 # ====================================================
 #  Personal Data Dashboard
-#  Wersja: 0.0.1
-#  Data: 2025-05-15
+#  Wersja: 0.0.2
+#  Data: 2025-05-16
 # ====================================================
 
 import sys
-import os
 from gui import Ui_MainWindow
 from PyQt5 import QtWidgets
 
@@ -21,45 +20,53 @@ def main():
 
     # ----------- EXCHANGE SECTION -----------
     def on_show_exchange_click():
-        curr_input = ui.exchange_select_curr.currentText()
-        todays_data = currency.get_api_data(curr_input)
+        curr_input = ui.exchangeSelectCurr.currentText()
+        todays_data = currency.get_cached_live_data(curr_input)
 
         exchange_chart = currency.get_currency_chart(curr_input)
         if exchange_chart:
-            scaled_exchange_chart = exchange_chart.scaled(ui.exchange_curr_chart_exch.width(), ui.exchange_curr_chart_exch.height(), aspectRatioMode=1)
-            ui.exchange_curr_chart_exch.setPixmap(scaled_exchange_chart)
+            scaled_exchange_chart = exchange_chart.scaled(ui.exchangeCurrChartExch.width(), ui.exchangeCurrChartExch.height(), aspectRatioMode=1)
+            ui.exchangeCurrChartExch.setPixmap(scaled_exchange_chart)
         else:
-            ui.exchange_curr_chart_exch.setText("Failed to load data.")
+            ui.exchangeCurrChartExch.setText("Failed to load data.")
 
         if todays_data:
-            ui.exchange_today.setText(f"Todays value: {todays_data} zł")
+            ui.exchangeToday.setText(f"Todays value: {todays_data} zł")
         else:
-            ui.exchange_today.setText("Failed to load data.")
+            ui.exchangeToday.setText("Failed to load data.")
 
-        ui.exchange_curr_chart_exch.update()
+        ui.exchangeCurrChartExch.update()
 
-    ui.exchange_show_exchange.clicked.connect(lambda: on_show_exchange_click())
+    # --- CACHE
+    currency.save_offline_data()
+
+    ui.exchangeShowBtn.clicked.connect(lambda: on_show_exchange_click())
 
 
     # ----------- WEATHER SECTION -----------
     def on_show_weather_click():
-        city_name = ui.weather_search_bar.text()
+        city_name = ui.weatherSearchBar.text()
         weather_data = weather.get_weather(city_name)
 
         if weather_data:
             #Today
-            ui.weather_today.setText(weather_data['today']['weather_desc'])
-            ui.weather_today_temp.setText(weather_data['today']['temperature'])
-            ui.weather_today_humidity.setText(weather_data['today']['humidity'])
-            ui.weather_today_pressure.setText(weather_data['today']['humidity'])
-            ui.weather_today_visibility.setText(weather_data['today']['visibility'])
-            ui.weather_today_wind.setText(weather_data['today']['wind'])
+            ui.weatherTodayIcon.setText(weather_data['today']['weather_desc'])
+            ui.weatherTodayTemp.setText(weather_data['today']['temperature'])
+            ui.weatherTodayHumidity.setText(weather_data['today']['humidity'])
+            ui.weatherTodayPressure.setText(weather_data['today']['humidity'])
+            ui.weatherTodayVisibility.setText(weather_data['today']['visibility'])
+            ui.weatherTodayWind.setText(weather_data['today']['wind'])
 
+            today_icon = weather.get_weather_icon(weather_data['today']['icon'], weather_data['tomorrow']['icon'])
+            if today_icon:
+                ui.weatherTodayIcon.setPixmap(today_icon)
+            else:
+                ui.weatherTodayIcon.setText("Can't load icon.")
             #Tomorrow
         else:
-            ui.weather_today.setText("Failed to load data.")
+            ui.weatherToday.setText("Failed to load data.")
 
-    ui.weather_search_btn.clicked.connect(lambda: on_show_weather_click())
+    ui.weatherSearchBtn.clicked.connect(lambda: on_show_weather_click())
 
     # ----------- NEWS SECTION -----------
     

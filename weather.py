@@ -13,6 +13,9 @@ import os
 #http://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 #req: lat, lon, api_key
 
+#get weather icon
+#https://openweathermap.org/img/wn/{id}@2x.png
+
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
@@ -44,10 +47,12 @@ def get_weather(city_name):
     #get forecast
     today_forecast = response_data['list'][0]
     tomorrow_forecast = None
+
     for forecast in response_data['list']:
         if forecast['dt_txt'] == target_tomorrow_time:
             tomorrow_forecast = forecast
             break
+    
     return {
         "today":{
             "weather_desc" : today_forecast['weather'][0]['description'],
@@ -56,15 +61,30 @@ def get_weather(city_name):
             "humidity" : str(today_forecast['main']['humidity']),
             "visibility" :  str(today_forecast['visibility']),
             "pressure" : str(today_forecast['main']['pressure']),
-            "date" : str(today_forecast['dt_txt'])
+            "date" : str(today_forecast['dt_txt']),
+            'icon' : str(response_data['list'][0]['weather'][0]['icon'])
         },
         "tomorrow": {
             "weather_desc" : tomorrow_forecast['weather'][0]['description'],
             "temperature" : str(tomorrow_forecast['main']['temp']),
-            "date" : str(tomorrow_date)
+            "date" : str(tomorrow_date),
+            'icon' : str(forecast['weather'][0]['icon'])
         }
     }
 
+def get_weather_icon(today_icon, tomorrow_icon):
+    #today icon
+    api_url = f"https://openweathermap.org/img/wn/{today_icon}@2x.png"
+    response = requests.get(api_url)
+    if response.status_code == 200:
+        image_data = BytesIO(response.content)
+        pixmap = QPixmap()
+        pixmap.loadFromData(image_data.read())
+        return pixmap
+    else:
+        return None
+
+    
 def get_coordinates(city_name):
     api_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city_name}&limit={1}&appid={API_KEY}"
     try:
