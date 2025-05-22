@@ -6,9 +6,9 @@ from datetime import datetime, timedelta
 from io import BytesIO
 from PyQt5.QtGui import QPixmap
 
-#do dodania:
-#   - więcej walut
-#   - przy uruchomieniu programu domyślnie ma być wykres euro
+# DO POPRAWY!
+#  - wygląd wykresu
+
 
 #get currency data from start date to end date
 #https://api.nbp.pl/api/exchangerates/rates/{table}/{code}/{startDate}/{endDate}/
@@ -78,7 +78,7 @@ def get_currency_chart(curr_code):
         x_values.append(date_str)
         y_values.append(exchange_day / 100)
     
-    plt.figure(figsize=(10,5), dpi=100)
+    plt.figure(figsize=(10,4), dpi=100)
     plt.plot(x_values, y_values, label=f"Kurs {curr_code}", marker='.')
     
     buf = BytesIO()
@@ -128,10 +128,12 @@ def get_cached_live_data(curr_code):
             'rate' : rate
         }
         return data[curr_code]['rate']
+    else:
+        print(f"Can't load {curr_code} data.")
     
     with open(CACHE_FILE, 'w') as file:
         json.dump(data, file)
-        return rate
+        return data[curr_code]['rate']
 
     if curr_code in data:
         return data[curr_code]["rate"]

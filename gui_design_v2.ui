@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1061</width>
-    <height>829</height>
+    <width>1288</width>
+    <height>893</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #010311;</string>
+   <string notr="true">background-color: #030612;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="weatherFrame">
@@ -22,8 +22,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>521</width>
-      <height>341</height>
+      <width>661</width>
+      <height>381</height>
      </rect>
     </property>
     <property name="layoutDirection">
@@ -44,7 +44,7 @@ background-color: #0A0F26;</string>
      <item>
       <layout class="QVBoxLayout" name="weather">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QHBoxLayout" name="newsHorizontalLayout">
          <item>
           <widget class="QLineEdit" name="weatherSearchBar">
            <property name="minimumSize">
@@ -113,7 +113,7 @@ border-radius: 15px;</string>
           </widget>
          </item>
          <item>
-          <spacer name="horizontalSpacer">
+          <spacer name="newsHorizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -128,14 +128,48 @@ border-radius: 15px;</string>
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="weatherToday_2">
+        <layout class="QVBoxLayout" name="weatherTodayLayout">
          <property name="spacing">
           <number>10</number>
          </property>
          <item>
           <layout class="QHBoxLayout" name="weatherToday">
            <item>
+            <widget class="QLabel" name="weatherCityName">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial Black</family>
+               <pointsize>26</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color:white;
+</string>
+             </property>
+             <property name="text">
+              <string>CityName</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QLabel" name="weatherTodayIcon">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
                <width>150</width>
@@ -170,7 +204,158 @@ border-radius: 15px;</string>
              </property>
             </widget>
            </item>
-           <item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="todayWeatherInfo" rowstretch="0">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <item row="0" column="2">
+            <widget class="QLabel" name="weatherTodayWind">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial Black</family>
+               <pointsize>16</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color:#181C3B;
+color: white;
+border: 2px solid #181C3B;
+border-radius: 15px;</string>
+             </property>
+             <property name="text">
+              <string>Wind</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="weatherTodayVisibility">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial Black</family>
+               <pointsize>16</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color:#181C3B;
+color: white;
+border: 2px solid #181C3B;
+border-radius: 15px;</string>
+             </property>
+             <property name="text">
+              <string>Visibility</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="5">
+            <widget class="QLabel" name="weatherTodayPressure">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial Black</family>
+               <pointsize>16</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color:#181C3B;
+color: white;
+border: 2px solid #181C3B;
+border-radius: 15px;</string>
+             </property>
+             <property name="text">
+              <string>Pressure</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="weatherTodayHumidity">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial Black</family>
+               <pointsize>16</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color:#181C3B;
+color: white;
+border: 2px solid #181C3B;
+border-radius: 15px;</string>
+             </property>
+             <property name="text">
+              <string>Humidity</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
             <widget class="QLabel" name="weatherTodayTemp">
              <property name="minimumSize">
               <size>
@@ -206,156 +391,18 @@ border-radius: 15px;</string>
              </property>
             </widget>
            </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QGridLayout" name="todayWeatherInfo" rowstretch="0">
-           <property name="spacing">
-            <number>10</number>
-           </property>
-           <item row="0" column="2">
-            <widget class="QLabel" name="weatherTodayVisibility">
-             <property name="minimumSize">
+           <item row="0" column="6">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
               <size>
-               <width>110</width>
-               <height>110</height>
+               <width>40</width>
+               <height>20</height>
               </size>
              </property>
-             <property name="maximumSize">
-              <size>
-               <width>110</width>
-               <height>110</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Arial Black</family>
-               <pointsize>16</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color:#181C3B;
-color: white;
-border: 2px solid #181C3B;
-border-radius: 15px;</string>
-             </property>
-             <property name="text">
-              <string>Visibility</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="weatherTodayWind">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>110</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>110</width>
-               <height>110</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Arial Black</family>
-               <pointsize>16</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color:#181C3B;
-color: white;
-border: 2px solid #181C3B;
-border-radius: 15px;</string>
-             </property>
-             <property name="text">
-              <string>Wind</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLabel" name="weatherTodayHumidity">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>110</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>110</width>
-               <height>110</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Arial Black</family>
-               <pointsize>16</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color:#181C3B;
-color: white;
-border: 2px solid #181C3B;
-border-radius: 15px;</string>
-             </property>
-             <property name="text">
-              <string>Humidity</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QLabel" name="weatherTodayPressure">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>110</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>110</width>
-               <height>110</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Arial Black</family>
-               <pointsize>16</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color:#181C3B;
-color: white;
-border: 2px solid #181C3B;
-border-radius: 15px;</string>
-             </property>
-             <property name="text">
-              <string>Pressure</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
+            </spacer>
            </item>
           </layout>
          </item>
@@ -365,28 +412,13 @@ border-radius: 15px;</string>
      </item>
     </layout>
    </widget>
-   <widget class="QListView" name="newsFrame">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>10</y>
-      <width>511</width>
-      <height>771</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 2px solid #0A0F26;
-border-radius: 15px;
-background-color: #0A0F26;</string>
-    </property>
-   </widget>
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="exchangeFrame">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>360</y>
-      <width>520</width>
-      <height>420</height>
+      <y>410</y>
+      <width>661</width>
+      <height>441</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -404,9 +436,9 @@ background-color: #0A0F26;</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>60</y>
+       <y>50</y>
        <width>311</width>
-       <height>16</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -423,7 +455,7 @@ background-color: #0A0F26;
 </string>
      </property>
      <property name="text">
-      <string>Today rate:</string>
+      <string>Todays rate:</string>
      </property>
     </widget>
     <widget class="QLabel" name="exchangeCurrChartExch">
@@ -431,8 +463,8 @@ background-color: #0A0F26;
       <rect>
        <x>10</x>
        <y>90</y>
-       <width>491</width>
-       <height>311</height>
+       <width>641</width>
+       <height>341</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -460,7 +492,7 @@ border-radius: 15px;</string>
        <height>41</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <layout class="QHBoxLayout" name="exchangeHorizontalLayout">
       <item>
        <widget class="QComboBox" name="exchangeSelectCurr">
         <property name="minimumSize">
@@ -556,7 +588,7 @@ border-radius: 15px;</string>
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer_2">
+       <spacer name="exchangeHorizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -571,13 +603,371 @@ border-radius: 15px;</string>
      </layout>
     </widget>
    </widget>
+   <widget class="QFrame" name="newsFrame">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>10</y>
+      <width>580</width>
+      <height>840</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>580</width>
+      <height>840</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid #0A0F26;
+border-radius: 15px;
+background-color: #0A0F26;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QFrame" name="newsPanel">
+     <property name="geometry">
+      <rect>
+       <x>5</x>
+       <y>11</y>
+       <width>570</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>570</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>570</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid #181C3B;
+border-radius: 15px;
+background-color: #181C3B;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <layout class="QHBoxLayout" name="newsHorizontalLayout_top">
+        <item>
+         <widget class="QLabel" name="newsSelectLabel">
+          <property name="minimumSize">
+           <size>
+            <width>130</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>130</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial Black</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: white;</string>
+          </property>
+          <property name="text">
+           <string>Select category: </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="newsCategoryInput">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+    color: white;                /* Kolor tekstu wyświetlanego w polu */
+    background-color: #181C3B;
+}
+
+QComboBox QListView {
+    background-color: #181C3B;   /* Tło rozwijanej listy */
+    color: white;              /* Kolor tekstu dla wszystkich elementów */
+    selection-background-color: #cce5ff;
+    selection-color: black;     /* Kolor zaznaczonego elementu */
+}
+</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>TOP</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SPORTS</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>WORLD</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TECHNOLOGY</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SCIENCE</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ENTERTAINMENT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>FOOD</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>POLITICS</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>FASHION</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="newsSubmitBtn">
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:#0A0F26;
+color: white;
+border: 2px solid #0A0F26;
+border-radius: 15px;</string>
+          </property>
+          <property name="text">
+           <string>Submit</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="newsHorizontalSpacer_top">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>80</y>
+       <width>581</width>
+       <height>751</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="newsVerticalLayoutArticles">
+      <item>
+       <widget class="QScrollArea" name="newsScrollArea">
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustIgnored</enum>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <widget class="QWidget" name="newsScrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>575</width>
+           <height>745</height>
+          </rect>
+         </property>
+         <widget class="QFrame" name="newsArticleFrameTemplate">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>550</width>
+            <height>120</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>480</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>550</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: 2px solid #181C3B;
+border-radius: 15px;
+background-color: #181C3B;</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="newsArticleImage">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>10</y>
+             <width>100</width>
+             <height>100</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: 2px solid #0A0F26;
+border-radius: 15px;
+background-color: #181C3B;
+color: white;
+font: 10pt &quot;Arial&quot;;</string>
+           </property>
+           <property name="text">
+            <string>IMAGE</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="newsArticleTitle">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>10</y>
+             <width>411</width>
+             <height>81</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+             <underline>false</underline>
+             <strikeout>false</strikeout>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">text-decoration: none;
+color: white;
+font: 10pt &quot;Arial&quot;;
+
+</string>
+           </property>
+           <property name="text">
+            <string>TITLE: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QLabel" name="newsArticleSource">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>100</y>
+             <width>201</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: grey;</string>
+           </property>
+           <property name="text">
+            <string>SOURCE: Lorem ipsum dolor sit amet</string>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <zorder>newsFrame</zorder>
+   <zorder>weatherFrame</zorder>
+   <zorder>exchangeFrame</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1061</width>
+     <width>1288</width>
      <height>21</height>
     </rect>
    </property>

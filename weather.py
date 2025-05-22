@@ -18,7 +18,7 @@ import os
 
 
 load_dotenv()
-API_KEY = os.getenv("API_KEY")
+API_KEY = os.getenv("WEATHER_API_KEY")
 
 def get_weather(city_name):
     lat, lon = get_coordinates(city_name)
@@ -56,10 +56,10 @@ def get_weather(city_name):
     return {
         "today":{
             "weather_desc" : today_forecast['weather'][0]['description'],
-            "temperature" : str(today_forecast['main']['temp']),
-            "wind" : str(today_forecast['wind']['speed']),
+            "temperature" : int(today_forecast['main']['temp']),
+            "wind" : int(today_forecast['wind']['speed']),
             "humidity" : str(today_forecast['main']['humidity']),
-            "visibility" :  str(today_forecast['visibility']),
+            "visibility" :  int(today_forecast['visibility'])/1000,
             "pressure" : str(today_forecast['main']['pressure']),
             "date" : str(today_forecast['dt_txt']),
             'icon' : str(response_data['list'][0]['weather'][0]['icon'])
