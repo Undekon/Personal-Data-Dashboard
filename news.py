@@ -20,7 +20,6 @@ def get_parameters(category):
 
 def get_news(category):
     parameters = get_parameters(category)
-    print(parameters)
     api_url = 'https://newsdata.io/api/1/news?'
 
     try:

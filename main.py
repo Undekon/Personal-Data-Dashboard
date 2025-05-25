@@ -1,7 +1,7 @@
 # ====================================================
 #  Personal Data Dashboard
 #  Wersja: 0.0.4
-#  Data: 2025-05-22
+#  Data: 2025-05-23
 # ====================================================
 
 import sys
@@ -9,7 +9,6 @@ from gui import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore, QtGui
 import requests
 from io import BytesIO
-
 
 import currency
 import weather
@@ -50,7 +49,7 @@ def main():
     # ----------- WEATHER SECTION -----------
     def on_show_weather_click(default_city = None):
         city_name = default_city or ui.weatherSearchBar.text()
-        city_name.capitalize()
+        city_name = city_name.capitalize()
         weather_data = weather.get_weather(city_name)
 
         if weather_data:
@@ -140,7 +139,7 @@ def main():
                 source = article['source_url']
 
                 create_article(title, link, img, source)
-                print(f"{title}\n{link}\n{img}\n{source}\n\n")
+                # print(f"{title}\n{link}\n{img}\n{source}\n\n")
         else:
             error_label = QtWidgets.QLabel("Can't load news.")
             error_label.setStyleSheet("color: white; font-size: 14p;")
